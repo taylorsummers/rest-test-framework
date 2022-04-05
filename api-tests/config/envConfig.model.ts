@@ -1,5 +1,5 @@
 export class EnvConfig {
-  apiDomain: string;
-  firestoreCollection: string;
+  apiDomain!: string;
+  firestoreCollection!: string;
   projectId?: string;
 }
