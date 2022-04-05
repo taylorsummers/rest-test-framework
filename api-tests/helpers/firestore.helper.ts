@@ -1,5 +1,5 @@
 // eslint-disable-next-line node/no-unpublished-import
-import {Firestore} from '@google-cloud/firestore';
+import {Firestore, Timestamp} from '@google-cloud/firestore';
 import {EnvConfig} from '../config/envConfig.model';
 // eslint-disable-next-line node/no-unpublished-import
 import {Chance} from 'chance';
@@ -17,12 +17,12 @@ class FirestoreHelper {
     const doc = this.store.doc(isbn);
 
     batch.set(doc, {
-      title: 'TEST DATA',
+      title: `TEST DATA ${this.chance.hammertime()}`,
       author: `${this.chance.first()} ${this.chance.last()}`,
       pages: this.chance.integer({min: 1, max: 2000}),
       year: +this.chance.year(),
       language: language,
-      updated: this.chance.hammertime(),
+      updated: Timestamp.now(),
     });
 
     try {

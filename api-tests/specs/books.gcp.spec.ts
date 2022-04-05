@@ -3,7 +3,7 @@ import ApiGatewayHelper from '../helpers/apiGateway.helper';
 import AxiosHelper from '../helpers/axiosClient.helper';
 import FirestoreHelper from '../helpers/firestore.helper';
 import {APIList} from '../models/misc/apiGateway.list.model';
-import {BooksList} from '../models/response/booksList.get.response.model';
+import {BookResponse} from '../models/response/book.get.response.model';
 
 describe('Using GCP helpers to access GCP data', () => {
   describe('Success Flows', () => {
@@ -15,11 +15,16 @@ describe('Using GCP helpers to access GCP data', () => {
       await firestore.addBookData(isbn);
     });
 
-    //TODO Figure out why this is failing. The data exists in Firestore.
     it('Get new book from Firestore', async () => {
-      const {status}: AxiosResponse<BooksList> =
-        await AxiosHelper.get<BooksList>(`books/${isbn}/`);
+      const {data, status}: AxiosResponse<BookResponse> =
+        await AxiosHelper.get<BookResponse>(`books/${isbn}/`);
       expect(status).toBe(200);
+      expect(data.author).toBeDefined();
+      expect(data.isbn).toBe(isbn);
+      expect(data.language).toBeDefined();
+      expect(data.pages).toBeDefined();
+      expect(data.title).toBeDefined();
+      expect(data.year).toBeDefined();
     });
 
     it('Should have an API via api-gateway', async () => {
