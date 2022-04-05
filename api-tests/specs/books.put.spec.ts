@@ -32,6 +32,6 @@ describe('PUT /books/', () => {
       const {status}: AxiosResponse<BookResponseData> =
         await AxiosHelper.put<BookResponseData>(`books/${isbn}`, bookData);
       expect(status).toBe(204);
-    }, 10000); // Increase timeout due to multiple
+    });
   });
 });

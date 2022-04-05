@@ -11,7 +11,7 @@ class AxiosHelper {
     params = {},
     authenticate = false
   ): Promise<AxiosResponse<T>> => {
-    //const authorization = authenticate ? '' : '';
+    //const authorization = authenticate ?  : '';
     return axios({
       baseURL: `${apiDomain}${path}`,
       proxy: false,
@@ -73,6 +73,7 @@ class AxiosHelper {
       headers: {
         'Content-Type': 'application/json',
       },
+      data: body,
     });
   };
 }

@@ -7,7 +7,7 @@ const projectId = envConfig.projectId;
 
 class ApiGatewayHelper {
   private client = new ApiGatewayServiceClient();
-  public listApis = async (): Promise<any> => {
+  public listApis = async (): Promise<unknown> => {
     const [apis] = await this.client.listApis({
       parent: `projects/${projectId}/locations/global`,
     });

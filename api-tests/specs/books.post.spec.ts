@@ -6,7 +6,7 @@ import {ErrorResponse} from '../models/response/error.response.model';
 
 describe('POST /books/', () => {
   describe('Success Flows', () => {
-    const isbn = '978-1-3771-8715-0';
+    const isbn = '9781377187150';
     const bookData = BookHelper.randomBookData(isbn);
     /**
      * GIVEN a user has valid book data
@@ -17,7 +17,7 @@ describe('POST /books/', () => {
       const {data, status}: AxiosResponse<BookResponseData> =
         await AxiosHelper.post<BookResponseData>('books', bookData);
       expect(status).toBe(201);
-      expect(data.status).toBe('Book 9781377187150 created');
+      expect(data.status).toBe(`Book ${isbn} created`);
     });
   });
 
