@@ -13,10 +13,9 @@ describe('DELETE /books/isbn', () => {
     });
 
     it('Should respoond with ', async () => {
-      const {data, status}: AxiosResponse<BookResponseData> =
+      const {status}: AxiosResponse<BookResponseData> =
         await AxiosHelper.delete<BookResponseData>(`books/${isbn}`);
       expect(status).toBe(204);
-      console.log(data);
     });
   });
 });

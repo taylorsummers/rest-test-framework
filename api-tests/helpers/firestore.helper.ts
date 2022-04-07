@@ -44,7 +44,6 @@ class FirestoreHelper {
       }
     } catch (e) {
       console.error('Error saving books:', e);
-      return;
     }
   };
 
