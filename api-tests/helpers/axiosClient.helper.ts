@@ -27,7 +27,10 @@ class AxiosHelper {
   public static get = async <T>(
     path = '',
     params = {},
-    authenticate = false
+    authenticate = false,
+    validateStatus = (status: any) => {
+      return status >= 200 && status < 300;
+    }
   ): Promise<AxiosResponse<T>> => {
     //const authorization = authenticate ? '' : '';
     return axios({
@@ -38,6 +41,7 @@ class AxiosHelper {
       headers: {
         'Content-Type': 'application/json',
       },
+      validateStatus: validateStatus,
     });
   };
 
